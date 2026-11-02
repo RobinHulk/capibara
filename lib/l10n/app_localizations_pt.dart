@@ -331,7 +331,7 @@ class AppLocalizationsPt extends AppLocalizations {
       'Remove permanentemente todas as sessões de viagem, carga, frames e eventos de telemetria em uma operação.';
 
   @override
-  String get settingsWiping => 'LIMAPANDO';
+  String get settingsWiping => 'LIMPANDO';
 
   @override
   String get settingsWipeHistory => 'LIMPAR HISTÓRICO';

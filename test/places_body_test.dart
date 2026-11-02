@@ -268,49 +268,50 @@ void main() {
   });
 
   group('PlacesBody banner and attribution', () {
-    testWidgets('banner visible when opt-in off and CTA calls onOpenSettings', (
-      tester,
-    ) async {
-      var opened = false;
-      final places = [
-        const InsightPlace(
-          id: 'p1',
-          name: 'Casa',
-          latitude: -10.18,
-          longitude: -48.33,
-        ),
-      ];
-      final data = buildPlacesData(
-        places: places,
-        trips: [
-          _trip(
-            id: 't1',
-            startLat: -10.18,
-            startLon: -48.33,
-            endLat: -10.50,
-            endLon: -48.50,
+    testWidgets(
+      'banner visible when opt-in off and CTA calls onOpenSettings',
+      (tester) async {
+        var opened = false;
+        final places = [
+          const InsightPlace(
+            id: 'p1',
+            name: 'Casa',
+            latitude: -10.18,
+            longitude: -48.33,
           ),
-        ],
-      );
+        ];
+        final data = buildPlacesData(
+          places: places,
+          trips: [
+            _trip(
+              id: 't1',
+              startLat: -10.18,
+              startLon: -48.33,
+              endLat: -10.50,
+              endLon: -48.50,
+            ),
+          ],
+        );
 
-      await tester.pumpWidget(
-        _wrap(
-          PlacesBody(
-            state: Loadable<PlacesData>.ready(data),
-            capabilities: SurfaceCapabilities.fromWidth(390),
-            isOptIn: false,
-            onOpenSettings: () => opened = true,
+        await tester.pumpWidget(
+          _wrap(
+            PlacesBody(
+              state: Loadable<PlacesData>.ready(data),
+              capabilities: SurfaceCapabilities.fromWidth(390),
+              isOptIn: false,
+              onOpenSettings: () => opened = true,
+            ),
           ),
-        ),
-      );
+        );
 
-      expect(find.byKey(const Key('places-optin-banner')), findsOneWidget);
-      expect(find.text(PlacesBody.optInBannerTitle), findsOneWidget);
-      expect(find.byKey(const Key('places-optin-cta')), findsOneWidget);
-      await tester.tap(find.byKey(const Key('places-optin-cta')));
-      expect(opened, isTrue);
-      expect(find.text(PlacesBody.attribution), findsWidgets);
-    });
+        expect(find.byKey(const Key('places-optin-banner')), findsOneWidget);
+        expect(find.text(PlacesBody.optInBannerTitle), findsOneWidget);
+        expect(find.byKey(const Key('places-optin-cta')), findsOneWidget);
+        await tester.tap(find.byKey(const Key('places-optin-cta')));
+        expect(opened, isTrue);
+        expect(find.text(PlacesBody.attribution), findsWidgets);
+      },
+    );
 
     testWidgets('banner hidden when opt-in on', (tester) async {
       final data = PlacesData(named: const [], candidates: const []);

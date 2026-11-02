@@ -144,11 +144,11 @@ void main() {
       final result = labelContinuousMinutes(minutes: minutes, spans: spans);
 
       expect(result, hasLength(3));
-      expect(
-        result.map((r) => r.minute.start.utcMillis),
-        [_at(1).utcMillis, _at(2).utcMillis, _at(6).utcMillis],
-        reason: 'no synthetic minute is inserted for the missing minute 5',
-      );
+      expect(result.map((r) => r.minute.start.utcMillis), [
+        _at(1).utcMillis,
+        _at(2).utcMillis,
+        _at(6).utcMillis,
+      ], reason: 'no synthetic minute is inserted for the missing minute 5');
     });
 
     test('an estimated minute stays distinguishable from a measured one', () {

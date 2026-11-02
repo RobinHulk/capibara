@@ -100,7 +100,7 @@
   "settingsEventFileDesc": "Espelha os eventos de telemetria em um arquivo JSONL para depuração. Usa armazenamento extra; os arquivos existentes são removidos ao desativar.",
   "settingsWipe": "Apagar banco de dados de telemetria",
   "settingsWipeDesc": "Remove permanentemente todas as sessões de viagem, carga, frames e eventos de telemetria em uma operação.",
-  "settingsWiping": "LIMAPANDO",
+  "settingsWiping": "LIMPANDO",
   "settingsWipeHistory": "LIMPAR HISTÓRICO",
   "settingsWipeDialogTitle": "LIMPAR HISTÓRICO",
   "settingsWipeDialogContent": "Isso exclui permanentemente todas as linhas do banco de dados de telemetria local. Logs de carga não podem ser excluídos individualmente e esta ação não pode ser desfeita.",
