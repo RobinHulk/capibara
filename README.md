@@ -1,6 +1,6 @@
-# Capy Energy
+# Capibara
 
-Capy Energy records battery, trip, charging, and telemetry history on an
+Capibara records battery, trip, charging, and telemetry history on an
 electric Geely head unit, and shows it on the phone next to it. Two apps
 share two Dart packages:
 
@@ -16,8 +16,13 @@ Shared code lives in `packages/telemetry_core` (track encoding, physics,
 sync protocol) and `packages/capy_ui` (design system, see
 `packages/capy_ui/DESIGN.md`).
 
-The project is Apache 2.0 (`LICENSE`). It is published as-is by an owner
-who can no longer maintain it; see the issues for what needs an owner.
+## About and origin
+
+Capy Energy was originally created by Timoteo Sousa. This repository is a fork maintained by **RobinHulk**:
+https://github.com/RobinHulk/capibara
+
+The project is Apache 2.0 (`LICENSE`). It is published as-is; see the issues for what needs an owner.
+
 
 ## What car and head unit you need
 

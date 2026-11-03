@@ -97,9 +97,9 @@ const htmlContent = `<!DOCTYPE html>
 <body>
   <div class="container">
     <h1>Política de Privacidade</h1>
-    <div class="subtitle">Capy Energy / Capy Companion • Última atualização: 21 de agosto de 2026</div>
+    <div class="subtitle">Capibara / Capibara Companion • Última atualização: 21 de agosto de 2026</div>
 
-    <p>O aplicativo <strong>Capy</strong> ("Capy Companion") foi projetado com respeito à privacidade e à segurança das suas informações. Esta política descreve de forma clara como os dados são tratados.</p>
+    <p>O aplicativo <strong>Capy</strong> ("Capibara Companion") foi projetado com respeito à privacidade e à segurança das suas informações. Esta política descreve de forma clara como os dados são tratados.</p>
 
     <h2>1. Dados Coletados</h2>
     <ul>
@@ -136,7 +136,7 @@ const htmlContent = `<!DOCTYPE html>
     <p><strong>E-mail:</strong> <a href="mailto:timoteohss@gmail.com">timoteohss@gmail.com</a></p>
 
     <div class="footer">
-      © 2026 Capy Energy. Todos os direitos reservados.
+      © 2026 Capibara. Todos os direitos reservados.
     </div>
   </div>
 </body>

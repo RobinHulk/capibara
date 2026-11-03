@@ -41,7 +41,7 @@ probe() { # probe <label> <tile name>
 }
 
 echo "=== PHASE A: rules installed (both settings ON) ==="
-step "In Capy Energy settings, turn ON the CarPlay/Android Auto option and the open-on-charge option. Then close the app."
+step "In Capibara settings, turn ON the CarPlay/Android Auto option and the open-on-charge option. Then close the app."
 adb shell "ls $IFW_DIR" 2>&1
 probe A_CARPLAY "CarPlay"
 probe A_AAUTO   "Android Auto"

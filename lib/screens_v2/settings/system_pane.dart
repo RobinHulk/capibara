@@ -349,7 +349,11 @@ class _SystemPaneState extends State<SystemPane>
           ),
           const SizedBox(height: AppSpacing.x1),
           Text(
-            loc.settingsAboutDeveloper('@timhss'),
+            loc.settingsAboutDeveloper('RobinHulk'),
+            style: AppText.label.copyWith(color: colors.inkMuted),
+          ),
+          Text(
+            'https://github.com/RobinHulk/capibara',
             style: AppText.label.copyWith(color: colors.inkMuted),
           ),
           Text(

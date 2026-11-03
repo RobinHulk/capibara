@@ -490,18 +490,18 @@ cp "$DIST_DIR/latest.json" "$RELEASES_DIR/latest.json"
 ok "copied into $RELEASES_DIR"
 
 NOTES="$(jq -r --arg v "$VERSION" --arg b "$VERSION_CODE" \
-    '"Signed Android arm64 APK for Capy Energy v\($v) (versionCode \($b)).\n\n" +
+    '"Signed Android arm64 APK for Capibara v\($v) (versionCode \($b)).\n\n" +
      (.en | map("- " + .) | join("\n"))' "$NOTES_PATH")"
 
 if gh release view "$TAG" --repo "$PUBLIC_RELEASE_REPOSITORY" >/dev/null 2>&1; then
     gh release upload "$TAG" --repo "$PUBLIC_RELEASE_REPOSITORY" --clobber \
         "$RELEASES_DIR/$ASSET_NAME" "$RELEASES_DIR/latest.json"
     gh release edit "$TAG" --repo "$PUBLIC_RELEASE_REPOSITORY" \
-        --title "Capy Energy v$VERSION" --notes "$NOTES" --latest
+        --title "Capibara v$VERSION" --notes "$NOTES" --latest
     ok "updated the existing release $TAG"
 else
     gh release create "$TAG" --repo "$PUBLIC_RELEASE_REPOSITORY" \
-        --title "Capy Energy v$VERSION" --notes "$NOTES" --latest \
+        --title "Capibara v$VERSION" --notes "$NOTES" --latest \
         "$RELEASES_DIR/$ASSET_NAME" "$RELEASES_DIR/latest.json"
     ok "created the release $TAG"
 fi

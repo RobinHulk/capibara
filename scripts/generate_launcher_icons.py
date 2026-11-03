@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate Android and iOS launcher icons from the mascot asset.
+"""Generate Android and iOS launcher icons from the Capibara logo.
 
 Usage:
     python3 scripts/generate_launcher_icons.py
@@ -14,17 +14,26 @@ import sys
 from PIL import Image
 
 REPO_ROOT = pathlib.Path(__file__).resolve().parent.parent
-MASCOT_PATH = REPO_ROOT / "packages/capy_ui/assets/images/mascot/capy_happy_front.webp"
-BG_COLOR = (220, 240, 210, 255)  # #DCF0D2 (AppColors.energyGainSubtle)
+MASCOT_PATH = REPO_ROOT / "assets/branding/capibara_icon.jpg"
+BG_COLOR = (255, 255, 255, 255)  # White — matches logo background
+
+
+def _load_mascot() -> Image.Image:
+    """Load the mascot and convert to RGBA.
+    JPEGs have no alpha; treat white background as-is."""
+    img = Image.open(MASCOT_PATH).convert("RGBA")
+    return img
 
 
 def create_adaptive_foreground(mascot: Image.Image, size: int) -> Image.Image:
+    """Adaptive foreground layer: mascot centered in 108dp safe zone."""
     canvas = Image.new("RGBA", (size, size), (0, 0, 0, 0))
-    # Android safe zone is the central 66-72dp out of 108dp (~67%)
+    # Android safe zone is the central ~66% of 108dp
     mascot_size = int(size * 0.67)
     scaled = mascot.resize((mascot_size, mascot_size), Image.Resampling.LANCZOS)
     offset = (size - mascot_size) // 2
-    canvas.paste(scaled, (offset, offset), scaled)
+    # Paste without alpha mask (JPEG image, white BG is opaque)
+    canvas.paste(scaled, (offset, offset))
     return canvas
 
 
@@ -33,35 +42,46 @@ def create_adaptive_background(size: int) -> Image.Image:
 
 
 def create_adaptive_monochrome(mascot: Image.Image, size: int) -> Image.Image:
-    fg = create_adaptive_foreground(mascot, size)
-    _, _, _, a = fg.split()
-    dark_ink = Image.new("L", (size, size), 38)
-    return Image.merge("RGBA", (dark_ink, dark_ink, dark_ink, a))
+    """Monochrome layer: dark silhouette using luminance mask."""
+    canvas = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+    mascot_size = int(size * 0.67)
+    scaled = mascot.resize((mascot_size, mascot_size), Image.Resampling.LANCZOS)
+    # Use inverted luminance as alpha (dark logo areas become opaque dark ink)
+    gray = scaled.convert("L")
+    # Invert: dark pixels become high alpha
+    alpha = gray.point(lambda p: max(0, 255 - p))
+    dark_ink = Image.new("L", (mascot_size, mascot_size), 38)
+    mono = Image.merge("RGBA", (dark_ink, dark_ink, dark_ink, alpha))
+    offset = (size - mascot_size) // 2
+    canvas.paste(mono, (offset, offset), mono)
+    return canvas
 
 
 def create_full_icon(mascot: Image.Image, size: int) -> Image.Image:
+    """Square icon: mascot on white background, scaled to 90%."""
     canvas = Image.new("RGBA", (size, size), BG_COLOR)
-    # Full icon: mascot scaled to ~76% centered
-    mascot_size = int(size * 0.76)
+    mascot_size = int(size * 0.90)
     scaled = mascot.resize((mascot_size, mascot_size), Image.Resampling.LANCZOS)
     offset = (size - mascot_size) // 2
-    canvas.paste(scaled, (offset, offset), scaled)
+    canvas.paste(scaled, (offset, offset))
     return canvas
 
 
 def main() -> int:
     if not MASCOT_PATH.exists():
-        sys.stderr.write(f"Mascot not found at {MASCOT_PATH}\n")
+        sys.stderr.write(f"Icon source not found at {MASCOT_PATH}\n")
+        sys.stderr.write("Copy capibara_icon.jpg to assets/branding/ first.\n")
         return 1
 
-    mascot = Image.open(MASCOT_PATH).convert("RGBA")
+    mascot = _load_mascot()
+    print(f"Loaded mascot: {mascot.size} {mascot.mode}")
 
     # 1. Android densities
     android_densities = {
-        "mipmap-mdpi": {"legacy": 48, "adaptive": 108},
-        "mipmap-hdpi": {"legacy": 72, "adaptive": 162},
-        "mipmap-xhdpi": {"legacy": 96, "adaptive": 216},
-        "mipmap-xxhdpi": {"legacy": 144, "adaptive": 324},
+        "mipmap-mdpi":    {"legacy": 48,  "adaptive": 108},
+        "mipmap-hdpi":    {"legacy": 72,  "adaptive": 162},
+        "mipmap-xhdpi":   {"legacy": 96,  "adaptive": 216},
+        "mipmap-xxhdpi":  {"legacy": 144, "adaptive": 324},
         "mipmap-xxxhdpi": {"legacy": 192, "adaptive": 432},
     }
 
@@ -124,6 +144,21 @@ def main() -> int:
             icon = create_full_icon(mascot, w)
             icon.save(ios_iconset_dir / filename, "PNG")
             print(f"Generated iOS icon {filename} ({w}x{h})")
+
+    # 3. Web icons
+    web_dir = REPO_ROOT / "web"
+    web_icons_dir = web_dir / "icons"
+    web_icons_dir.mkdir(parents=True, exist_ok=True)
+
+    favicon = create_full_icon(mascot, 16)
+    favicon.save(web_dir / "favicon.png", "PNG")
+    print("Generated web/favicon.png")
+
+    for web_size in [192, 512]:
+        web_icon = create_full_icon(mascot, web_size)
+        web_icon.save(web_icons_dir / f"Icon-{web_size}.png", "PNG")
+        web_icon.save(web_icons_dir / f"Icon-maskable-{web_size}.png", "PNG")
+        print(f"Generated web/icons/Icon-{web_size}.png and Icon-maskable-{web_size}.png")
 
     print("All launcher icons successfully generated!")
     return 0

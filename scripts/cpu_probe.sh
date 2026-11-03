@@ -109,7 +109,7 @@ thread_counters() {
 }
 
 {
-    echo "# Capy Energy CPU probe"
+    echo "# Capibara CPU probe"
     echo "package: $PACKAGE_NAME"
     echo "pid: $PID"
     echo "label: ${LABEL:-none}"

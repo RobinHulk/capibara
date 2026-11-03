@@ -20,7 +20,7 @@ usage() {
     cat <<EOF
 Usage: scripts/install.sh [options]
 
-Builds and installs Capy Energy as an ordinary app in /data/app.
+Builds and installs Capibara as an ordinary app in /data/app.
 
 The car permissions the app declares are 'signature|privileged'. The release
 build is signed with the platform key, which satisfies the signature branch on

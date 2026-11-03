@@ -277,7 +277,8 @@ class _AppUpdateConfirmationDialog extends StatelessWidget {
   }
 }
 
-const _developerHandle = '@timoteohss';
+const _developerHandle = 'RobinHulk';
+const _repositoryUrl = 'https://github.com/RobinHulk/capibara';
 
 class _AboutPanel extends StatelessWidget {
   const _AboutPanel();
@@ -369,6 +370,14 @@ class _AboutPanel extends StatelessWidget {
                         style: AutomotiveTextStyles.bodyMd.copyWith(
                           color: colorScheme.onSurfaceVariant,
                           fontSize: 14,
+                        ),
+                      ),
+                      const SizedBox(height: AutomotiveSpacing.x0_5),
+                      Text(
+                        _repositoryUrl,
+                        style: AutomotiveTextStyles.bodyMd.copyWith(
+                          color: colorScheme.secondary,
+                          fontSize: 12,
                         ),
                       ),
                     ],

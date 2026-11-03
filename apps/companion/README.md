@@ -1,6 +1,6 @@
-# Capy Energy companion
+# Capibara Companion
 
-Phone Flutter app for Capy Energy. Android and iOS.
+Phone Flutter app for Capibara. Android and iOS.
 
 The home screen takes the 6-digit car pairing code. The local archive
 and the sync client are Dart and run without a list of sessions yet.

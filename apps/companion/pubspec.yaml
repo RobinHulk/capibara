@@ -1,5 +1,7 @@
 name: capy_companion
 description: "Capy Energy phone companion."
+homepage: https://github.com/RobinHulk/capibara
+repository: https://github.com/RobinHulk/capibara
 publish_to: "none"
 version: 0.1.1+5
 resolution: workspace

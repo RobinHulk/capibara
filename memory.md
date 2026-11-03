@@ -1,4 +1,4 @@
-# Capy Energy — memory.md
+# Capibara — memory.md
 
 > Este arquivo registra o contexto do projeto para sessões futuras do agente.
 
@@ -14,7 +14,8 @@
 | Licença           | Apache 2.0                                                            |
 | Linguagem primária| Dart (Flutter)                                                        |
 | Status            | **Abandonado pelo dono original.** Continuação pelo fork atual.      |
-| Último push       | 2026-11-01                                                            |
+| Responsável atual | RobinHulk                                                             |
+| Último push       | 2026-11-03                                                            |
 | Status da suíte   | 2.157 testes passando (car app: 1074, capy_ui: 364, core: 284, companion: 435) |
 | Branch default    | `main`                                                                |
 | Schema Room       | v35 → `databases/geely_telemetry.db`                                 |
@@ -25,7 +26,7 @@
 
 ## O que o projeto faz
 
-Capy Energy é um app de telemetria de bateria e energia para **veículos elétricos Geely** com head unit **Android Automotive (Flyme Auto)**. Registra viagens, carregamentos e histórico de sinais CAN, e exibe tudo no celular ao lado do carro.
+Capibara é um app de telemetria de bateria e energia para **veículos elétricos Geely** com head unit **Android Automotive (Flyme Auto)**. Registra viagens, carregamentos e histórico de sinais CAN, e exibe tudo no celular ao lado do carro.
 
 Dois apps, dois packages Dart compartilhados:
 

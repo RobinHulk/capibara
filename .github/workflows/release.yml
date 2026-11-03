@@ -249,12 +249,12 @@ jobs:
           TAG: ${{ steps.version.outputs.tag }}
         run: |
           set -euo pipefail
-          notes="Signed Android arm64 APK for Capy Energy v$VERSION (versionCode $BUILD_NUMBER)."
+          notes="Signed Android arm64 APK for Capibara v$VERSION (versionCode $BUILD_NUMBER)."
           if [[ -f release_notes/current.json ]]; then
             notes=$(jq -r \
               --arg version "$VERSION" \
               --arg build "$BUILD_NUMBER" \
-              '"Signed Android arm64 APK for Capy Energy v\($version) " +
+              '"Signed Android arm64 APK for Capibara v\($version) " +
                "(versionCode \($build)).\n\n" +
                (.en | map("- " + .) | join("\n"))' \
               release_notes/current.json)
@@ -267,14 +267,14 @@ jobs:
               dist/latest.json
             gh release edit "$TAG" \
               --repo "$PUBLIC_RELEASE_REPOSITORY" \
-              --title "Capy Energy v$VERSION" \
+              --title "Capibara v$VERSION" \
               --notes "$notes" \
               --latest
           else
             gh release create "$TAG" \
               --repo "$PUBLIC_RELEASE_REPOSITORY" \
               --target main \
-              --title "Capy Energy v$VERSION" \
+              --title "Capibara v$VERSION" \
               --notes "$notes" \
               --latest \
               "dist/capy-v$VERSION.apk" \

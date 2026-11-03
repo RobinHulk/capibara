@@ -1,6 +1,6 @@
-# Capy Energy Domain Context
+# Capibara Domain Context
 
-Capy Energy is an automotive telemetry application for Geely / Flyme Auto Android Automotive head units, paired with a multi-platform phone companion app.
+Capibara is an automotive telemetry application for Geely / Flyme Auto Android Automotive head units, paired with a multi-platform phone companion app.
 
 ## Language
 

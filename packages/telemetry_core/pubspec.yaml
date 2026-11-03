@@ -1,5 +1,5 @@
 name: telemetry_core
-description: "Shared domain models, DTOs, calculation helpers, and telemetry interfaces for Capy Energy."
+description: "Shared domain models, DTOs, calculation helpers, and telemetry interfaces for Capibara."
 publish_to: 'none'
 version: 0.1.0
 resolution: workspace
