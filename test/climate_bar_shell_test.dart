@@ -28,12 +28,6 @@ void main() {
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
-    // The shell opens the welcome announcement on its first frame, and that
-    // dialog is modal: it absorbs the pointer over the whole screen, the bar
-    // included. Marking it seen is what leaves the shell reachable — the bar
-    // being unreachable behind a modal is correct, not a defect to work
-    // around.
-    await AppExperienceController.instance.setWelcomeSeen(true);
 
     await tester.pumpWidget(
       MaterialApp(

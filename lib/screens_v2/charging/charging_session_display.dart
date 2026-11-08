@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../core/telemetry_api.dart';
 import '../../core/telemetry_format.dart';
-import '../../screens_v2/charge_cost_editor.dart';
+import '../charge_cost_editor.dart';
 import '../../design_system/design_system.dart';
 import '../../l10n/app_localizations.dart';
-import '../../widgets/telemetry_map_panel.dart';
 
 /// Presentation model for a charging session row, decoupled from the native
 /// `SessionRecord` DTO. Mirrors `TripSessionDisplay`.
@@ -263,20 +262,6 @@ String chargeFallbackEndReason(String status, AppLocalizations loc) {
     default:
       return '--';
   }
-}
-
-List<TelemetryMapPoint> chargeLocationPoint(SessionRecord session) {
-  final latitude = session.startLatitude;
-  final longitude = session.startLongitude;
-  if (latitude == null || longitude == null) return const [];
-  return [
-    TelemetryMapPoint(
-      latitude: latitude,
-      longitude: longitude,
-      altitudeM: session.startAltitudeM,
-      accuracyM: session.startGpsAccuracyM,
-    ),
-  ];
 }
 
 double chargeMinimumPadding(String unit) {

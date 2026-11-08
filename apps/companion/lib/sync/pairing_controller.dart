@@ -88,22 +88,17 @@ class PairingController extends ChangeNotifier {
     }
 
     // Connectivity gate: check before touching the gateway.
+    busy = true;
     final checker = reachabilityChecker;
     if (checker != null) {
       final reachability = await checker.check();
       connectivity = reachability;
       if (reachability != BackendReachability.reachable) {
+        busy = false;
         notifyListeners();
         return;
       }
-      // Reachable: fall through to the busy/claim flow. Connectivity already
-      // set so the screen can show "online, claiming…".
-      // Fix race: two rapid taps both awaited checker before busy=true
-      // and would both reach claim. Guard here after the async gap.
-      if (busy) return;
     }
-
-    busy = true;
     error = null;
     lastResult = null;
     signedOut = false;

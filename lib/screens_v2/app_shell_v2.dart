@@ -14,7 +14,6 @@ import '../core/range_estimate_controller.dart';
 import '../core/vehicle_state_controller.dart';
 import '../l10n/app_localizations.dart';
 import 'android_auto_home_v2_screen.dart';
-import 'experience_welcome_dialog.dart';
 import 'carplay_home_v2_screen.dart';
 import 'charging/charging_v2_screen.dart';
 import 'compass_readout.dart';
@@ -154,7 +153,6 @@ class _AppShellV2State extends State<AppShellV2>
     if (AppExperienceController.instance.projectionEnabled) _watchProjection();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
-        showExperienceWelcomeDialog(context);
         _onNavigationRequested();
       }
     });

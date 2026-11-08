@@ -2,7 +2,6 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../design_system/design_system.dart';
 import '../l10n/app_localizations.dart';
 
 export 'package:telemetry_core/telemetry_core.dart' show compassBearingLabel;
@@ -97,12 +96,12 @@ String statusLabel(String status, AppLocalizations loc) {
 Color statusColorFor(String status, String? endReason) {
   final upperStatus = status.toUpperCase();
   final upperReason = endReason?.toUpperCase() ?? '';
-  if (upperStatus == 'ACTIVE') return AutomotiveColors.secondary;
+  if (upperStatus == 'ACTIVE') return const Color(0xFF4ADE80);
   if (upperReason.contains('CANCEL') || upperReason.contains('ERROR')) {
-    return AutomotiveColors.warning;
+    return const Color(0xFFFBBF24);
   }
-  if (upperStatus == 'ENDED') return AutomotiveColors.tertiary;
-  return AutomotiveColors.onSurfaceVariant;
+  if (upperStatus == 'ENDED') return const Color(0xFF60A5FA);
+  return const Color(0xFF94A3B8);
 }
 
 double? distanceBetween(double? start, double? end) {

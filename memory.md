@@ -16,7 +16,7 @@
 | Status            | **Abandonado pelo dono original.** Continuação pelo fork atual.      |
 | Responsável atual | RobinHulk                                                             |
 | Último push       | 2026-11-03                                                            |
-| Status da suíte   | 2.157 testes passando (car app: 1074, capy_ui: 364, core: 284, companion: 435) |
+| Status da suíte   | 2.125 testes passando (car app: 1042, capy_ui: 364, core: 284, companion: 435) |
 | Branch default    | `main`                                                                |
 | Schema Room       | v35 → `databases/geely_telemetry.db`                                 |
 | Flutter requerido | 3.44.6                                                                |
@@ -198,7 +198,9 @@ supabase functions deploy privacy
 
 O projeto foi **abandonado pelo dono original** (`Timoteohss`). O fork `RobinHulk/capibara` é o workspace ativo de continuação. O código está completo e funcional:
 - Análise estática limpa com exclusão de pastas de build (`analysis_options.yaml`).
-- 2.157 testes automatizados validados e passando em todos os 4 módulos.
+- 2.125 testes automatizados validados e passando em todos os 4 módulos.
+- Interface legada V1 e widgets obsoletos purgados; o app abre diretamente no `AppShellV2`.
+- Telas de diagnóstico preservadas movidas para `lib/screens_v2/` (`charging_session_display.dart`, `roadcast_trace_screen.dart`, `sensor_lab_screen.dart`).
 - Correção ortográfica de `settingsWiping` sincronizada em PT (`app_pt.arb` e `app_localizations_pt.dart`).
 - Notas de release em `release_notes/current.json` alinhadas e validadas (12 itens por idioma).
 

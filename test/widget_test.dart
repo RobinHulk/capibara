@@ -26,26 +26,9 @@ void main() {
     SharedPreferences.setMockInitialValues({});
     await ThemeController.instance.setThemeMode(ThemeMode.dark);
     await AppExperienceController.instance.reset();
-    await AppExperienceController.instance.setWelcomeSeen(true);
   });
   tearDown(() async {
     await AppExperienceController.instance.reset();
-  });
-
-  testWidgets('app shell boots on the trips destination', (
-    WidgetTester tester,
-  ) async {
-    await AppExperienceController.instance.setNewUiEnabled(false);
-
-    await tester.pumpWidget(const CapyEnergyApp());
-    await tester.pump();
-
-    // The deleted debug/diagnostics rail entries must not come back, and the
-    // shell must land on a destination that exists in every build.
-    expect(find.text('Trips'), findsOneWidget);
-    expect(find.text('Settings'), findsOneWidget);
-    expect(find.text('Live'), findsNothing);
-    expect(find.text('Debug'), findsNothing);
   });
 
   testWidgets('the new shell is what boots by default', (
@@ -75,7 +58,6 @@ void main() {
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
-    await AppExperienceController.instance.setNewUiEnabled(true);
 
     await tester.pumpWidget(const CapyEnergyApp());
     await tester.pump();
@@ -102,36 +84,6 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets('the previous shell can be picked without restarting the app', (
-    WidgetTester tester,
-  ) async {
-    tester.view.physicalSize = const Size(1920, 1080);
-    tester.view.devicePixelRatio = 1;
-    addTearDown(tester.view.resetPhysicalSize);
-    addTearDown(tester.view.resetDevicePixelRatio);
-    await AppExperienceController.instance.setNewUiEnabled(true);
-
-    await tester.pumpWidget(const CapyEnergyApp());
-    await tester.pump();
-    expect(find.byType(AppShellV2), findsOneWidget);
-
-    // The settings menu owns the switch back. The new shell must not cost
-    // access to the previous app until the process is killed.
-    await _openSettings(tester);
-    await tester.tap(find.text('Developer'));
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('Use the previous interface'));
-    // Plain pumps, not `pumpAndSettle`: the previous shell this lands on keeps
-    // a repeating clock running, so there is no settled frame to wait for.
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 300));
-
-    expect(AppExperienceController.instance.newUiEnabled, isFalse);
-    expect(find.byType(AppShellV2), findsNothing);
-    expect(find.text('Trips'), findsOneWidget);
-    expect(tester.takeException(), isNull);
-  });
-
   testWidgets('V2 Config switches between the persistent app themes', (
     WidgetTester tester,
   ) async {
@@ -139,7 +91,6 @@ void main() {
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
-    await AppExperienceController.instance.setNewUiEnabled(true);
 
     await tester.pumpWidget(const CapyEnergyApp());
     await tester.pump();

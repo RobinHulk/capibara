@@ -6,8 +6,8 @@ import '../../core/signal_lab_controller.dart';
 import '../../core/telemetry_api.dart';
 import '../../core/telemetry_scope.dart';
 import '../../l10n/app_localizations.dart';
-import '../../screens/roadcast_trace_screen.dart';
-import '../../screens/sensor_lab_screen.dart';
+import '../roadcast_trace_screen.dart';
+import '../sensor_lab_screen.dart';
 import '../signal_lab_screen.dart';
 import 'package:capy_ui/capy_ui.dart';
 import 'settings_pane.dart';
@@ -219,23 +219,6 @@ class _DeveloperPaneState extends State<DeveloperPane>
                           }
                           if (mounted) setState(() {});
                         },
-                      ),
-                      SettingsEntry(
-                        title: loc.v2AppShellTitle,
-                        description: loc.v2AppShellDescription,
-                        child: SoftActionTile(
-                          icon: Icons.arrow_back,
-                          label: loc.v2AppShellAction,
-                          onPressed: () {
-                            // Close the menu first: the shell underneath is
-                            // about to be replaced, and a route left open over
-                            // it outlives the tree that pushed it.
-                            Navigator.of(context).pop();
-                            AppExperienceController.instance.setNewUiEnabled(
-                              false,
-                            );
-                          },
-                        ),
                       ),
                     ],
                   ),

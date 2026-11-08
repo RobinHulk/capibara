@@ -654,7 +654,6 @@ void main() {
 
     expect(find.text('Experiments'), findsOneWidget);
     expect(find.text('CarPlay / Android Auto (Beta)'), findsOneWidget);
-    expect(find.text('Use the previous interface'), findsOneWidget);
 
     await tester.tap(find.text('CarPlay / Android Auto (Beta)'));
     await tester.pumpAndSettle();

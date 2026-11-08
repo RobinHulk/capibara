@@ -5,8 +5,7 @@ import '../../core/efficiency_unit.dart';
 import '../../core/telemetry_api.dart';
 import '../../core/telemetry_format.dart';
 import '../../l10n/app_localizations.dart';
-import '../../screens/charging/charging_session_display.dart'
-    show chargePlugLabel;
+import '../charging/charging_session_display.dart' show chargePlugLabel;
 import 'package:capy_ui/capy_ui.dart';
 import 'history_format.dart';
 
