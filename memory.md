@@ -15,7 +15,7 @@
 | Linguagem primária| Dart (Flutter)                                                        |
 | Status            | **Abandonado pelo dono original.** Continuação pelo fork atual.      |
 | Responsável atual | RobinHulk                                                             |
-| Último push       | 2026-11-03                                                            |
+| Último push       | 2026-11-09                                                            |
 | Status da suíte   | 2.125 testes passando (car app: 1042, capy_ui: 364, core: 284, companion: 435) |
 | Branch default    | `main`                                                                |
 | Schema Room       | v35 → `databases/geely_telemetry.db`                                 |
@@ -206,6 +206,8 @@ O projeto foi **abandonado pelo dono original** (`Timoteohss`). O fork `RobinHul
 - Binários nativos Roadcast (`libroadcast_client.so` e `roadcastd`, canal `edge`) instalados localmente.
 - Keystore pública AOSP gerada em `refs/aosp-security/platform.jks` (SHA-256 verificado).
 - Build release do APK (`flutter build apk --release` -> `app-release.apk`) validado com sucesso.
+- Configuração de build Android: `kotlin.incremental=false` em `android/gradle.properties` para compilação Windows multi-drive.
+- Servidor web mock da nova interface V2 validado em `http://localhost:8080`.
 
 Faltam para ambiente físico / produção:
 1. Supabase credentials (`android/local.properties`, `apps/companion/.env`).
