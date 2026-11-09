@@ -203,10 +203,13 @@ O projeto foi **abandonado pelo dono original** (`Timoteohss`). O fork `RobinHul
 - Telas de diagnóstico preservadas movidas para `lib/screens_v2/` (`charging_session_display.dart`, `roadcast_trace_screen.dart`, `sensor_lab_screen.dart`).
 - Correção ortográfica de `settingsWiping` sincronizada em PT (`app_pt.arb` e `app_localizations_pt.dart`).
 - Notas de release em `release_notes/current.json` alinhadas e validadas (12 itens por idioma).
+- Binários nativos Roadcast (`libroadcast_client.so` e `roadcastd`, canal `edge`) instalados localmente.
+- Keystore pública AOSP gerada em `refs/aosp-security/platform.jks` (SHA-256 verificado).
+- Build release do APK (`flutter build apk --release` -> `app-release.apk`) validado com sucesso.
 
 Faltam para ambiente físico / produção:
-1. Roadcast binaries (compilar de https://github.com/Timoteohss/roadcast).
-2. Supabase credentials (`android/local.properties`, `apps/companion/.env`).
+1. Supabase credentials (`android/local.properties`, `apps/companion/.env`).
+2. Validar instalação em veículo físico com `scripts/install.sh`.
 3. Ver issues abertas no upstream (`Timoteohss/capy`) para o que precisa de dono.
 4. Atualizar `release_notes/current.json` após qualquer feature ou fix.
 
